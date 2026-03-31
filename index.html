@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIGITAL Blessed — Agencia de Transformación Digital</title>
+  <meta name="description" content="DIGITAL Blessed es una agencia premium de transformación digital especializada en sitios web, ecosistemas empresariales, IA y automatización para empresas en Costa Rica y Latinoamérica.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #F5DC78;
+      --gold-dark: #B8860B;
+      --black: #000000;
+      --dark: #0a0a0a;
+      --card: #111111;
+      --border: rgba(212,175,55,0.15);
+      --text: #ffffff;
+      --text-mid: rgba(255,255,255,0.65);
+      --text-dim: rgba(255,255,255,0.35);
+    }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    section { padding: 80px 0; }
+
+    /* ── Typography ── */
+    .label {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; letter-spacing: -1px; line-height: 1.1; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; }
+    h3 { font-size: 1.15rem; font-weight: 700; }
+    p { color: var(--text-mid); font-size: 0.95rem; line-height: 1.75; }
+    .text-gold { color: var(--gold); }
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ── Buttons ── */
+    .btn-gold {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+      color: #000;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(212,175,55,0.5);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 13px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(0,0,0,0.95);
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+      backdrop-filter: blur(20px);
+      padding: 0 32px;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { height: 32px; }
+    .nav-logo-text {
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #fff;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: #000; font-weight: 700; font-size: 0.78rem;
+      padding: 9px 22px; border-radius: 50px; text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 70%), #000;
+      padding: 80px 32px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle 600px at 50% 50%, rgba(212,175,55,0.04), transparent);
+      pointer-events: none;
+    }
+    .hero-logo-wrap {
+      margin-bottom: 48px;
+    }
+    .hero-logo-wrap img {
+      width: min(420px, 80vw);
+      filter: drop-shadow(0 0 60px rgba(212,175,55,0.3));
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px; display: block;
+    }
+    .hero h1 { color: #fff; margin-bottom: 20px; }
+    .hero h1 em { font-style: normal; color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.55);
+      max-width: 600px; margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
+      margin-top: 72px; padding-top: 48px;
+      border-top: 1px solid rgba(212,175,55,0.1);
+    }
+    .hero-stat-num {
+      display: block; font-size: 2rem; font-weight: 800;
+      background: linear-gradient(135deg, #F5DC78, #D4AF37);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      font-family: 'Helvetica Neue', sans-serif; letter-spacing: -1px;
+    }
+    .hero-stat-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.1em; }
+
+    /* ── IDENTITY STATEMENT ── */
+    .identity { background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .identity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .identity-logo img { width: 100%; max-width: 340px; }
+    .identity-quote {
+      font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; line-height: 1.3;
+      color: #fff; margin-bottom: 24px;
+    }
+    .identity-quote em { font-style: normal; color: var(--gold); }
+
+    /* ── MISSION ── */
+    .mission-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; }
+    .mission-h2 { color: #fff; margin-bottom: 16px; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--dark); }
+    .services-header { text-align: center; margin-bottom: 60px; }
+    .services-header h2 { color: #fff; margin-bottom: 12px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .svc-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px; padding: 32px 28px;
+      transition: border-color 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .svc-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+    }
+    .svc-num {
+      font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em;
+      color: rgba(212,175,55,0.4); margin-bottom: 20px; display: block;
+    }
+    .svc-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .svc-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .svc-card h3 { color: #fff; margin-bottom: 12px; font-size: 1.05rem; }
+    .svc-card p { font-size: 0.87rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+    .svc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .svc-tag {
+      font-size: 0.62rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 20px; background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.15); color: rgba(212,175,55,0.7);
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── CASES ── */
+    .cases-header { text-align: center; margin-bottom: 60px; }
+    .cases-header h2 { color: #fff; margin-bottom: 12px; }
+    .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .case-card {
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--card);
+    }
+    .case-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/3; }
+    .case-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .case-logo-wrap {
+      position: absolute; bottom: 16px; left: 16px;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+      border-radius: 10px; padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .case-logo-wrap img { height: 28px; display: block; }
+    .case-body { padding: 24px; }
+    .case-industry {
+      font-size: 0.62rem; font-weight: 800; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 8px; display: block;
+    }
+    .case-body h3 { color: #fff; margin-bottom: 10px; font-size: 1rem; }
+    .case-body p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.65; }
+    .case-services { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+    .case-pill {
+      font-size: 0.6rem; font-weight: 700; padding: 3px 9px; border-radius: 20px;
+      background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.2);
+      color: rgba(212,175,55,0.7); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    /* ── PROCESS ── */
+    .process { background: var(--dark); }
+    .process-header { text-align: center; margin-bottom: 60px; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+    .process-step { text-align: center; padding: 0 12px; }
+    .process-step-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: #000; font-weight: 800; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; box-shadow: 0 0 24px rgba(212,175,55,0.3);
+    }
+    .process-step h3 { color: #fff; margin-bottom: 10px; font-size: 0.95rem; }
+    .process-step p { font-size: 0.82rem; }
+
+    /* ── WHY US ── */
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .why-stats { display: flex; flex-wrap: wrap; gap: 32px; margin-top: 40px; }
+    .why-stat { }
+    .why-stat-num {
+      font-size: 2.4rem; font-weight: 800; display: block;
+      background: linear-gradient(135deg, #F5DC78, #D4AF37);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      letter-spacing: -1px;
+    }
+    .why-stat-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+    .why-values { display: flex; flex-direction: column; gap: 24px; margin-top: 16px; }
+    .why-value { display: flex; gap: 16px; align-items: flex-start; }
+    .why-value-icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .why-value-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .why-value h4 { color: #fff; font-size: 0.88rem; margin-bottom: 4px; }
+    .why-value p { font-size: 0.8rem; }
+
+    /* ── TECH ── */
+    .tech { background: var(--dark); }
+    .tech-header { text-align: center; margin-bottom: 48px; }
+    .tech-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .tech-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50px; padding: 10px 20px;
+      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.55);
+    }
+    .tech-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    .contact { text-align: center; }
+    .contact h2 { color: #fff; margin-bottom: 16px; }
+    .contact-sub { max-width: 520px; margin: 0 auto 48px; }
+    .contact-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .contact-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(212,175,55,0.15);
+      border-radius: 16px; padding: 24px 32px; min-width: 200px; text-align: center;
+    }
+    .contact-card-icon { font-size: 1.4rem; margin-bottom: 10px; display: block; }
+    .contact-card-lbl { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); margin-bottom: 6px; display: block; }
+    .contact-card-val { font-size: 0.9rem; font-weight: 600; color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000; border-top: 1px solid rgba(212,175,55,0.1);
+      padding: 48px 32px 32px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.35); line-height: 1.7; margin-top: 16px; }
+    .footer-col-title {
+      font-size: 0.62rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--gold); margin-bottom: 16px; display: block;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.45); font-size: 0.82rem; text-decoration: none; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+
+    /* ── Brand identity strip ── */
+    .brand-strip {
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.08), transparent);
+      border-top: 1px solid rgba(212,175,55,0.1);
+      border-bottom: 1px solid rgba(212,175,55,0.1);
+      padding: 24px 0; text-align: center;
+    }
+    .brand-strip p {
+      font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(212,175,55,0.5);
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .identity-grid { grid-template-columns: 1fr; }
+      .mission-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .hero-stats { gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVEGACIÓN
+═══════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="https://digitalblessed.com/images/logo-dorado.png" alt="DIGITAL Blessed">
+      <span class="nav-logo-text">DIGITAL Blessed</span>
+    </a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#casos">Casos</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto" class="nav-cta">Agendar sesión</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     HERO — IDENTIDAD DE MARCA
+═══════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-logo-wrap">
+    <img src="https://digitalblessed.com/images/DigitalBlessedLogoAnimacionUltimoFrame.png"
+         alt="DIGITAL Blessed — Agencia de Transformación Digital">
+  </div>
+  <span class="hero-eyebrow">Agencia de Transformación Digital · Costa Rica</span>
+  <h1>Transformamos empresas.<br><em>Redefinimos lo digital.</em></h1>
+  <p class="hero-sub">
+    Construimos el ecosistema digital completo que tu empresa necesita para crecer, operar y dominar su mercado. Sitios web, ecosistemas, IA y automatización — todo en una sola agencia.
+  </p>
+  <div class="hero-actions">
+    <a href="https://digitalblessed.com/agenda" class="btn-gold">Agenda tu evaluación gratuita</a>
+    <a href="https://digitalblessed.com/servicios" class="btn-outline">Ver servicios</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <span class="hero-stat-num">100%</span>
+      <span class="hero-stat-lbl">Proyectos personalizados</span>
+    </div>
+    <div>
+      <span class="hero-stat-num">24/7</span>
+      <span class="hero-stat-lbl">Disponibilidad IA</span>
+    </div>
+    <div>
+      <span class="hero-stat-num">5</span>
+      <span class="hero-stat-lbl">Pilares de digitalización</span>
+    </div>
+    <div>
+      <span class="hero-stat-num">0</span>
+      <span class="hero-stat-lbl">Plantillas genéricas</span>
+    </div>
+  </div>
+</section>
+
+<div class="brand-strip">
+  <p>Sitios Web · Apps de Gestión · Ecosistemas Empresariales · Tiendas Online · IA & Automatización</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     DECLARACIÓN DE IDENTIDAD
+═══════════════════════════════════════════════ -->
+<section class="identity" id="nosotros">
+  <div class="container">
+    <div class="identity-grid">
+      <div class="identity-logo">
+        <img src="https://digitalblessed.com/images/DigitalBlessedLogo.png" alt="DIGITAL Blessed Logo">
+      </div>
+      <div>
+        <span class="label">Quiénes somos</span>
+        <p class="identity-quote">
+          No creamos sitios web.<br>
+          <em>Construimos el futuro digital de las empresas.</em>
+        </p>
+        <p>
+          Somos DIGITAL Blessed, una agencia especializada en construir el ecosistema digital que tu empresa necesita para crecer, operar y dominar su mercado. Trabajamos exclusivamente con empresarios y emprendedores que entienden que la tecnología no es un gasto — es la inversión más importante de la próxima década.
+        </p>
+        <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="https://digitalblessed.com/sobre-nosotros" class="btn-outline" style="font-size: 0.78rem; padding: 10px 24px;">Conocer más</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MISIÓN
+═══════════════════════════════════════════════ -->
+<section style="padding: 80px 0; background: #000;">
+  <div class="container">
+    <div class="mission-grid">
+      <div>
+        <span class="label">Nuestra misión</span>
+        <h2 class="mission-h2">Le devolvemos el tiempo, la claridad y el control a los empresarios.</h2>
+      </div>
+      <div>
+        <p style="margin-bottom: 20px;">
+          Cada empresario que llega a nosotros lleva consigo el mismo peso: demasiados procesos manuales, sistemas desconectados, una presencia digital que no refleja el verdadero valor de su negocio. Nosotros resolvemos exactamente eso.
+        </p>
+        <p>
+          En DIGITAL Blessed no vendemos plantillas ni soluciones genéricas. Construimos cada proyecto desde cero, pensado para tu industria, tu cliente ideal y tus metas reales. Cada línea de código, cada pixel de diseño, cada automatización tiene un único propósito: <strong style="color: #fff;">hacer que tu empresa funcione mejor.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     SERVICIOS — LOS 5 PILARES
+═══════════════════════════════════════════════ -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="services-header">
+      <span class="label">Lo que hacemos</span>
+      <h2 style="color: #fff;">Cinco pilares.<br>Un solo objetivo.</h2>
+      <p style="max-width: 520px; margin: 16px auto 0;">Todo lo que tu empresa necesita para transformarse digitalmente, en una sola agencia.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- 01 Sitios Web -->
+      <div class="svc-card">
+        <span class="svc-num">01</span>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3>Sitios Web Profesionales</h3>
+        <p>Tu imagen digital es la primera impresión. Diseñamos sitios que generan confianza, tráfico orgánico y conversiones reales desde el día uno. Diseño premium, velocidad excepcional y SEO integrado.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Diseño UI/UX</span>
+          <span class="svc-tag">SEO</span>
+          <span class="svc-tag">Velocidad</span>
+          <span class="svc-tag">Responsive</span>
+        </div>
+      </div>
+
+      <!-- 02 Apps Internas -->
+      <div class="svc-card">
+        <span class="svc-num">02</span>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Apps de Gestión Interna</h3>
+        <p>Herramientas digitales a medida para que tu equipo opere con máxima eficiencia: seguimiento de tareas, reportes en tiempo real, flujos automatizados. Tu empresa, sistematizada.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Dashboards</span>
+          <span class="svc-tag">Reportes</span>
+          <span class="svc-tag">Automatización</span>
+        </div>
+      </div>
+
+      <!-- 03 Ecosistemas -->
+      <div class="svc-card">
+        <span class="svc-num">03</span>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <h3>Ecosistemas Empresariales</h3>
+        <p>La integración total de tu empresa en una única plataforma: desde la administración hasta el cliente final. Todo conectado. Todo sincronizado. Todo bajo tu control absoluto.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">CRM</span>
+          <span class="svc-tag">Integración</span>
+          <span class="svc-tag">Panel Cliente</span>
+          <span class="svc-tag">Pagos</span>
+        </div>
+      </div>
+
+      <!-- 04 E-Commerce -->
+      <div class="svc-card">
+        <span class="svc-num">04</span>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h3>Tiendas Online</h3>
+        <p>E-commerce diseñado para convertir visitantes en compradores y compradores en clientes recurrentes. Tu tienda vende mientras tú duermes. Carrito, pagos, inventario y logística integrados.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">E-Commerce</span>
+          <span class="svc-tag">Pagos Online</span>
+          <span class="svc-tag">Inventario</span>
+        </div>
+      </div>
+
+      <!-- 05 IA & Automatización -->
+      <div class="svc-card">
+        <span class="svc-num">05</span>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/><circle cx="9" cy="14" r="1"/><circle cx="15" cy="14" r="1"/></svg>
+        </div>
+        <h3>IA & Automatización</h3>
+        <p>Agentes inteligentes que trabajan 24/7, automatizan procesos repetitivos y liberan a tu equipo para enfocarse en lo que realmente importa: hacer crecer el negocio. El futuro, hoy.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Agentes IA</span>
+          <span class="svc-tag">Chatbots</span>
+          <span class="svc-tag">Workflows</span>
+          <span class="svc-tag">24/7</span>
+        </div>
+      </div>
+
+      <!-- CTA Card -->
+      <div class="svc-card" style="background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.03)); border-color: rgba(212,175,55,0.25); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <span class="label" style="margin-bottom: 12px;">¿Por dónde empezar?</span>
+        <h3 style="color: #fff; margin-bottom: 14px; font-size: 1rem;">Agenda una evaluación gratuita</h3>
+        <p style="font-size: 0.82rem; margin-bottom: 24px;">Analizamos tu empresa y te decimos exactamente qué necesitas y qué resultados puedes esperar.</p>
+        <a href="https://digitalblessed.com/agenda" class="btn-gold" style="font-size: 0.8rem; padding: 12px 28px;">Comenzar ahora</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     CASOS DE ÉXITO
+═══════════════════════════════════════════════ -->
+<section style="padding: 80px 0; background: #000;" id="casos">
+  <div class="container">
+    <div class="cases-header">
+      <span class="label">Casos de éxito</span>
+      <h2 style="color: #fff;">Resultados reales.<br>Clientes reales.</h2>
+      <p style="max-width: 500px; margin: 14px auto 0;">Cada proyecto es la prueba de que la transformación digital genera impacto medible y resultados concretos.</p>
+    </div>
+    <div class="cases-grid">
+
+      <!-- Marcos BEard -->
+      <div class="case-card">
+        <div class="case-img-wrap">
+          <img src="https://digitalblessed.com/images/MarcosBEard.png" alt="Marcos BEard — Barbería Premium">
+          <div class="case-logo-wrap">
+            <img src="https://digitalblessed.com/images/MarcosBEard/LogoBEard.png" alt="Marcos BEard Logo">
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="case-industry">Barbería · Grooming Premium</span>
+          <h3>Marcos BEard</h3>
+          <p>Ecosistema digital completo para una barbería premium: sitio web con reservas en línea, aplicación de gestión interna para barberos y sistema de fidelización de clientes.</p>
+          <div class="case-services">
+            <span class="case-pill">Sitio Web</span>
+            <span class="case-pill">App Interna</span>
+            <span class="case-pill">Reservas Online</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marcos TRAVEL -->
+      <div class="case-card">
+        <div class="case-img-wrap">
+          <img src="https://digitalblessed.com/images/MarcosTRAVEL.png" alt="Marcos TRAVEL — Agencia de Viajes">
+          <div class="case-logo-wrap">
+            <img src="https://digitalblessed.com/images/MarcosTRAVEL/LogoTRAVEL.png" alt="Marcos TRAVEL Logo">
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="case-industry">Turismo · Agencia de Viajes</span>
+          <h3>Marcos TRAVEL</h3>
+          <p>Plataforma completa para agencia de viajes: catálogo de destinos, cotizador online, sistema de pagos integrado y panel de gestión para el equipo de ventas.</p>
+          <div class="case-services">
+            <span class="case-pill">E-Commerce</span>
+            <span class="case-pill">Ecosistema</span>
+            <span class="case-pill">Pagos Online</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marcos UOAVID -->
+      <div class="case-card">
+        <div class="case-img-wrap">
+          <img src="https://digitalblessed.com/images/MarcosUOAVID.png" alt="Marcos UOAVID">
+          <div class="case-logo-wrap">
+            <img src="https://digitalblessed.com/images/MarcosUOAVID/LogoUOAVID.png" alt="Marcos UOAVID Logo">
+          </div>
+        </div>
+        <div class="case-body">
+          <span class="case-industry">Empresa · Gestión Digital</span>
+          <h3>Marcos UOAVID</h3>
+          <p>Ecosistema empresarial a medida con app de gestión interna, automatizaciones de procesos operativos y sistema de comunicación cliente-empresa en tiempo real.</p>
+          <div class="case-services">
+            <span class="case-pill">Ecosistema</span>
+            <span class="case-pill">App Interna</span>
+            <span class="case-pill">Automatización</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     PROCESO
+═══════════════════════════════════════════════ -->
+<section class="process" id="proceso">
+  <div class="container">
+    <div class="process-header">
+      <span class="label">Cómo trabajamos</span>
+      <h2 style="color: #fff;">Del concepto al resultado.<br>En cuatro pasos.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <h3>Fase 1 — Inspección</h3>
+        <p>Analizamos tu empresa, tus procesos, tu competencia y tus metas. Identificamos exactamente qué necesitas y diseñamos la solución óptima.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <h3>Fase 2 — Tecnologías</h3>
+        <p>Seleccionamos el stack tecnológico ideal y comenzamos el desarrollo. Iteración constante con el cliente para garantizar que la solución supere las expectativas.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <h3>Implementación</h3>
+        <p>Desplegamos la solución, capacitamos al equipo y afinamos cada detalle. Lanzamiento con soporte dedicado para garantizar una transición sin fricción.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">4</div>
+        <h3>Crecimiento continuo</h3>
+        <p>No desaparecemos tras el lanzamiento. Monitoreamos, optimizamos y seguimos construyendo sobre la base instalada. Tu socio digital a largo plazo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     POR QUÉ ELEGIRNOS
+═══════════════════════════════════════════════ -->
+<section style="padding: 80px 0; background: #000;">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <span class="label">Por qué elegirnos</span>
+        <h2 style="color: #fff; margin-bottom: 16px;">No somos una agencia más.<br>Somos tu socio digital.</h2>
+        <p style="margin-bottom: 8px;">Trabajamos como una extensión de tu equipo. Nos importa tu negocio, entendemos tus retos y construimos soluciones que generan impacto real y medible.</p>
+        <p>Sin humo. Sin excusas. Solo resultados.</p>
+        <div class="why-stats">
+          <div class="why-stat">
+            <span class="why-stat-num">100%</span>
+            <span class="why-stat-lbl">Proyectos personalizados</span>
+          </div>
+          <div class="why-stat">
+            <span class="why-stat-num">24/7</span>
+            <span class="why-stat-lbl">Disponibilidad IA</span>
+          </div>
+          <div class="why-stat">
+            <span class="why-stat-num">5</span>
+            <span class="why-stat-lbl">Pilares digitales</span>
+          </div>
+        </div>
+      </div>
+      <div class="why-values">
+        <div class="why-value">
+          <div class="why-value-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Entrega puntual, sin sorpresas</h4>
+            <p>Plazos claros, comunicación constante y entregas que cumplen exactamente lo prometido.</p>
+          </div>
+        </div>
+        <div class="why-value">
+          <div class="why-value-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div>
+            <h4>Tecnología de vanguardia</h4>
+            <p>Usamos las herramientas más avanzadas del mercado para construir soluciones duraderas.</p>
+          </div>
+        </div>
+        <div class="why-value">
+          <div class="why-value-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h4>Atención completamente personalizada</h4>
+            <p>Cada cliente tiene un interlocutor directo. Sin tickets. Sin bots. Personas reales.</p>
+          </div>
+        </div>
+        <div class="why-value">
+          <div class="why-value-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div>
+            <h4>Resultados que se miden</h4>
+            <p>Definimos métricas de éxito desde el inicio y mostramos el impacto real de cada solución.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     TECNOLOGÍAS
+═══════════════════════════════════════════════ -->
+<section class="tech">
+  <div class="container">
+    <div class="tech-header">
+      <span class="label">Stack tecnológico</span>
+      <h2 style="color: #fff; margin-bottom: 8px;">Construido con las mejores herramientas</h2>
+      <p>Tecnologías modernas, probadas y escalables para garantizar que tu inversión dure.</p>
+    </div>
+    <div class="tech-logos">
+      <div class="tech-pill"><span class="tech-dot"></span>Node.js</div>
+      <div class="tech-pill"><span class="tech-dot"></span>React</div>
+      <div class="tech-pill"><span class="tech-dot"></span>Next.js</div>
+      <div class="tech-pill"><span class="tech-dot"></span>MySQL</div>
+      <div class="tech-pill"><span class="tech-dot"></span>PostgreSQL</div>
+      <div class="tech-pill"><span class="tech-dot"></span>Stripe</div>
+      <div class="tech-pill"><span class="tech-dot"></span>OpenAI API</div>
+      <div class="tech-pill"><span class="tech-dot"></span>Anthropic Claude</div>
+      <div class="tech-pill"><span class="tech-dot"></span>Hostinger Cloud</div>
+      <div class="tech-pill"><span class="tech-dot"></span>Vercel</div>
+      <div class="tech-pill"><span class="tech-dot"></span>Figma</div>
+      <div class="tech-pill"><span class="tech-dot"></span>WhatsApp Business API</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════
+     CONTACTO
+═══════════════════════════════════════════════ -->
+<section style="padding: 80px 0; background: #000;" id="contacto">
+  <div class="container contact">
+    <span class="label">Contacto</span>
+    <h2>¿Listo para transformar<br>tu empresa?</h2>
+    <p class="contact-sub">Agenda una evaluación gratuita y te mostramos exactamente cómo podemos ayudarte a crecer.</p>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <span class="contact-card-icon">📧</span>
+        <span class="contact-card-lbl">Correo electrónico</span>
+        <span class="contact-card-val">contacto@digitalblessed.com</span>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">📱</span>
+        <span class="contact-card-lbl">WhatsApp · Teléfono</span>
+        <span class="contact-card-val">+506 8993-8478</span>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">🌐</span>
+        <span class="contact-card-lbl">Sitio web</span>
+        <span class="contact-card-val">digitalblessed.com</span>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card-icon">📍</span>
+        <span class="contact-card-lbl">Ubicación</span>
+        <span class="contact-card-val">Costa Rica · Latam</span>
+      </div>
+    </div>
+    <a href="https://digitalblessed.com/agenda" class="btn-gold" style="font-size: 0.95rem; padding: 16px 44px;">
+      Agendar evaluación gratuita →
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="https://digitalblessed.com/images/logo-dorado.png" alt="DIGITAL Blessed" style="height: 36px; margin-bottom: 4px;">
+        <p>Agencia de transformación digital premium para empresarios y emprendedores en Costa Rica y Latinoamérica. Construimos el futuro digital de las empresas.</p>
+        <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <span style="font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(212,175,55,0.4);">DIGITAL Blessed © 2025</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Servicios</span>
+        <ul>
+          <li><a href="https://digitalblessed.com/servicios">Sitios Web Profesionales</a></li>
+          <li><a href="https://digitalblessed.com/servicios">Apps de Gestión Interna</a></li>
+          <li><a href="https://digitalblessed.com/servicios">Ecosistemas Empresariales</a></li>
+          <li><a href="https://digitalblessed.com/servicios">Tiendas Online</a></li>
+          <li><a href="https://digitalblessed.com/servicios">IA & Automatización</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Empresa</span>
+        <ul>
+          <li><a href="https://digitalblessed.com/sobre-nosotros">Sobre nosotros</a></li>
+          <li><a href="https://digitalblessed.com/blog">Blog</a></li>
+          <li><a href="https://digitalblessed.com/contacto">Contacto</a></li>
+          <li><a href="https://digitalblessed.com/agenda">Agendar sesión</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Contacto directo</span>
+        <ul>
+          <li><a href="mailto:contacto@digitalblessed.com">contacto@digitalblessed.com</a></li>
+          <li><a href="https://wa.me/50689938478">+506 8993-8478</a></li>
+          <li><a href="https://digitalblessed.com">digitalblessed.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 DIGITAL Blessed. Todos los derechos reservados.</p>
+      <p>Diseño y desarrollo: DIGITAL Blessed · Costa Rica · Transformación Digital Premium</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
